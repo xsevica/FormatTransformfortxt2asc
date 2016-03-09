@@ -1,4 +1,4 @@
-ï»¿#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <cerrno>
@@ -6,25 +6,25 @@
 #include <time.h>
 using namespace std;
 
-//C++ APIæ–¹æ³•,æ€ä¹ˆä¼šç¬é—´è¯»å–äº†300Mçš„æ–‡ä»¶å‘¢
-//ç‰ˆæœ¬æ›´æ–°æµ‹è¯•
+//C++ API·½·¨,ÔõÃ´»áË²¼ä¶ÁÈ¡ÁË300MµÄÎÄ¼şÄØ
+//°æ±¾¸üĞÂ²âÊÔ
 
 int main()
 {
-    const int TimeFlagStartPosi = 13;//ç¬¬é›¶è¡Œçš„æ—¶é—´æ ‡è¯†èµ·å§‹ä½ç½®ï¼Œæ ‡å‡†å¸§å’Œæ‰©å±•å¸§é€šç”¨
-	const int MinLengthofOneLine = 93; //ä»ç¬¬0è¡Œå¼€å§‹ï¼Œæ—¶é—´æ ‡è¯†ä¸º0.0000æ ¼å¼æ—¶çš„æœ€å°è¡Œå­—ç¬¦æ•°
-	const int MinLengthofTimeFlag = 6;//æ—¶é—´æ ‡è¯†æ ¼å¼ä½æ•°ä¸º0.0000æ—¶å€™çš„é•¿åº¦
-	//åé¢çš„å˜é‡ç±»å‹å®šä¹‰å‘¢ï¼Œä¸æ˜¯intæ€ä¹ˆåŠ
-	//è®¡ç®—ç¨‹åºè¿è¡Œæ—¶é—´c
+    const int TimeFlagStartPosi = 13;//µÚÁãĞĞµÄÊ±¼ä±êÊ¶ÆğÊ¼Î»ÖÃ£¬±ê×¼Ö¡ºÍÀ©Õ¹Ö¡Í¨ÓÃ
+	const int MinLengthofOneLine = 93; //´ÓµÚ0ĞĞ¿ªÊ¼£¬Ê±¼ä±êÊ¶Îª0.0000¸ñÊ½Ê±µÄ×îĞ¡ĞĞ×Ö·ûÊı
+	const int MinLengthofTimeFlag = 6;//Ê±¼ä±êÊ¶¸ñÊ½Î»ÊıÎª0.0000Ê±ºòµÄ³¤¶È
+	//ºóÃæµÄ±äÁ¿ÀàĞÍ¶¨ÒåÄØ£¬²»ÊÇintÔõÃ´°ì
+	//¼ÆËã³ÌĞòÔËĞĞÊ±¼äc
 	clock_t start,finish;
    double totaltime;
    start=clock();
-   //è®¾ç½®è¯»å–çš„æ–‡ä»¶ï¼Œå…¶å®ç›´æ¥æ‹–æ–‡ä»¶åˆ°ç”Ÿæˆçš„exeè¯ï¼Œä¹Ÿæ˜¯å¯ä»¥çš„è¾“å‡ºçš„
+   //ÉèÖÃ¶ÁÈ¡µÄÎÄ¼ş£¬ÆäÊµÖ±½ÓÍÏÎÄ¼şµ½Éú³ÉµÄexe»°£¬Ò²ÊÇ¿ÉÒÔµÄÊä³öµÄ
    std::ifstream in("ZLG.txt", std::ios::in | std::ios::binary);
-   std::ofstream OutputFiles("TestResult.asc");//,ios::out | ios::binary | ios::app);//å®šä¹‰åé¢è¿™äº›æ ¼å¼çš„è¯ï¼Œå¥½åƒå°±ä¸èƒ½å¥½å¥½åœ°å†™å…¥æ–‡ä»¶äº†å‘¢
+   std::ofstream OutputFiles("TestResult.asc");//,ios::out | ios::binary | ios::app);//¶¨ÒåºóÃæÕâĞ©¸ñÊ½µÄ»°£¬ºÃÏñ¾Í²»ÄÜºÃºÃµØĞ´ÈëÎÄ¼şÁËÄØ
 	std::string contents;
-  //å½“å‰å¾ªç¯æ¢è¡Œç¬¦å·çš„ä½ç½®ï¼Œä»¥åŠä¸Šä¸€ä¸ªå¾ªç¯æ¢è¡Œç¬¦å·çš„ä½ç½®
-  string::size_type CurrentLFPosition = 0,LastLFPosition = 0;//ç”±stringç±»ç±»å‹å’Œvectorç±»ç±»å‹å®šä¹‰çš„ç±»å‹ï¼Œç”¨ä»¥ä¿å­˜ä»»æ„stringå¯¹è±¡æˆ–vectorå¯¹è±¡çš„é•¿åº¦
+  //µ±Ç°Ñ­»·»»ĞĞ·ûºÅµÄÎ»ÖÃ£¬ÒÔ¼°ÉÏÒ»¸öÑ­»·»»ĞĞ·ûºÅµÄÎ»ÖÃ
+  string::size_type CurrentLFPosition = 0,LastLFPosition = 0;//ÓÉstringÀàÀàĞÍºÍvectorÀàÀàĞÍ¶¨ÒåµÄÀàĞÍ£¬ÓÃÒÔ±£´æÈÎÒâstring¶ÔÏó»òvector¶ÔÏóµÄ³¤¶È
   if (in)//?
 	 {
 		in.seekg(0, std::ios::end);
@@ -33,11 +33,11 @@ int main()
 		in.read(&contents[0], contents.size());
 		in.close();
 	  }
-  //è®¾ç½®è¡Œç»“æŸæ ‡è¯†ï¼Œ
+  //ÉèÖÃĞĞ½áÊø±êÊ¶£¬
   string LF = "\n";
-  double LineNumber = -2;//è¡Œæ•°ï¼Œ-2147483648~+2147483647ï¼Œ2^32,è¦å¤šç®—ä¸¤è¡Œæ‰è¡Œå•Š
-  int LineNumberOffset = 0;//è¡Œæ ‡å·æ•°å­—å¢åŠ å¯¼è‡´åç»­å­—ç¬¦ä½ç½®ç›¸å¯¹æ•´ä½“çš„åç§»
-  int FlagTypeIndicator = 0;//æµ‹è¯•æ—¶é—´æ ‡è¯†ç±»å‹ï¼Œå¸§IDç±»å‹ï¼Œåç»­æµ‹è¯•æ˜¯ZLGæ–‡ä»¶æ ¼å¼è¿˜æ˜¯VDCIæ–‡ä»¶æ ¼å¼
+  double LineNumber = -2;//ĞĞÊı£¬-2147483648~+2147483647£¬2^32,Òª¶àËãÁ½ĞĞ²ÅĞĞ°¡
+  int LineNumberOffset = 0;//ĞĞ±êºÅÊı×ÖÔö¼Óµ¼ÖÂºóĞø×Ö·ûÎ»ÖÃÏà¶ÔÕûÌåµÄÆ«ÒÆ
+  int FlagTypeIndicator = 0;//²âÊÔÊ±¼ä±êÊ¶ÀàĞÍ£¬Ö¡IDÀàĞÍ£¬ºóĞø²âÊÔÊÇZLGÎÄ¼ş¸ñÊ½»¹ÊÇVDCIÎÄ¼ş¸ñÊ½
   while((CurrentLFPosition = contents.find_first_of(LF,CurrentLFPosition)) != string::npos
 	  && FlagTypeIndicator != )
   {
@@ -47,8 +47,8 @@ int main()
   {
 	LineNumber++;
 	if(LineNumber > 0)LineNumberOffset = floor(log10(LineNumber));
-	//cout << contents.substr(LastLFPosition,position) << endl;çœŸæ˜¯å¤Ÿè ¢çš„ï¼Œä½ ä»¥ä¸ºç¬¬äºŒä¸ªå‚æ•°æ˜¯å­—ç¬¦ä¸²æœ€åçš„ä½ç½®å—ï¼Œä¸æ˜¯ï¼Œé‚£æ˜¯é•¿åº¦ï¼Œé•¿åº¦ï¼Œæ‡‚ä¸æ‡‚
-	//ç•¥è¿‡ç¬¬ä¸€è¡Œçš„æ±‰å­—æ ‡é¢˜,ä½†æ˜¯è¦ä¿å­˜ç¬¬ä¸€è¡Œçš„ç»“æŸç¬¦çš„åœ¨æ–‡ä»¶ä¸­çš„ä½ç½®
+	//cout << contents.substr(LastLFPosition,position) << endl;ÕæÊÇ¹»´ÀµÄ£¬ÄãÒÔÎªµÚ¶ş¸ö²ÎÊıÊÇ×Ö·û´®×îºóµÄÎ»ÖÃÂğ£¬²»ÊÇ£¬ÄÇÊÇ³¤¶È£¬³¤¶È£¬¶®²»¶®
+	//ÂÔ¹ıµÚÒ»ĞĞµÄºº×Ö±êÌâ,µ«ÊÇÒª±£´æµÚÒ»ĞĞµÄ½áÊø·ûµÄÔÚÎÄ¼şÖĞµÄÎ»ÖÃ
 	if( LineNumber == -1)
 	{
 		LastLFPosition = CurrentLFPosition;
@@ -56,12 +56,12 @@ int main()
 	if( LineNumber != -1 )
 	{
 		/*
-		//CurLnTimeFlagStartPosi -> å½“å‰è¡Œçš„æ—¶é—´æ ‡è¯†èµ·å§‹ä½ç½® = ä¸Šä¸€è¡Œæ¢è¡Œç¬¦å·ç»“æŸä½ç½® + ç¬¬é›¶è¡Œçš„æ—¶é—´æ ‡è¯†èµ·å§‹ä½ç½® +  è¡Œå·å¢åŠ å¯¼è‡´çš„åç§»é‡
-		//CurLnTimeFlagLength -> å½“å‰è¡Œçš„æ—¶é—´æ ‡è¯†é•¿åº¦ = å½“å‰è¡Œæ¢è¡Œç¬¦ä½ç½® - ä¸Šä¸€è¡Œæ¢è¡Œç¬¦å·ç»“æŸä½ç½® - ç¬¬é›¶è¡Œçš„æœ€å°é•¿åº¦ + æ—¶é—´æ ‡è¯†æ ¼å¼ä½æ•°ä¸º0.0000æ—¶å€™çš„é•¿åº¦ + è¡Œå·å¢åŠ å¯¼è‡´çš„åç§»é‡
+		//CurLnTimeFlagStartPosi -> µ±Ç°ĞĞµÄÊ±¼ä±êÊ¶ÆğÊ¼Î»ÖÃ = ÉÏÒ»ĞĞ»»ĞĞ·ûºÅ½áÊøÎ»ÖÃ + µÚÁãĞĞµÄÊ±¼ä±êÊ¶ÆğÊ¼Î»ÖÃ +  ĞĞºÅÔö¼Óµ¼ÖÂµÄÆ«ÒÆÁ¿
+		//CurLnTimeFlagLength -> µ±Ç°ĞĞµÄÊ±¼ä±êÊ¶³¤¶È = µ±Ç°ĞĞ»»ĞĞ·ûÎ»ÖÃ - ÉÏÒ»ĞĞ»»ĞĞ·ûºÅ½áÊøÎ»ÖÃ - µÚÁãĞĞµÄ×îĞ¡³¤¶È + Ê±¼ä±êÊ¶¸ñÊ½Î»ÊıÎª0.0000Ê±ºòµÄ³¤¶È + ĞĞºÅÔö¼Óµ¼ÖÂµÄÆ«ÒÆÁ¿
 		*/
 		int CurLnTimeFlagStartPosi = LastLFPosition + TimeFlagStartPosi + LineNumberOffset;
 		int CurLnTimeFlagLength = CurrentLFPosition - LastLFPosition - MinLengthofOneLine + MinLengthofTimeFlag - LineNumberOffset;
-		//cout << contents.substr(CurLnTimeFlagStartPosi,CurLnTimeFlagLength) << endl;//å‡è®¾æ—¶é—´æ ‡è¯†ä»0.0000å¼€å§‹
+		//cout << contents.substr(CurLnTimeFlagStartPosi,CurLnTimeFlagLength) << endl;//¼ÙÉèÊ±¼ä±êÊ¶´Ó0.0000¿ªÊ¼
 		OutputFiles << contents.substr(CurLnTimeFlagStartPosi,CurLnTimeFlagLength) << endl;
 		//cout << "LastLFPosition is " << Linenumber << ":" << LastLFPosition << endl;
 		LastLFPosition = CurrentLFPosition;
@@ -70,11 +70,11 @@ int main()
   }
   cout << LineNumber << endl;
   cout << CurrentLFPosition << endl;
-  //throw(errno);//æ€»æ˜¯èƒ½æŠ›å‡ºå¼‚å¸¸æ¥ï¼Œæ€ä¹ˆå›äº‹å‘¢,å…¶å®ä¸ç”¨è¿™ä¸ªçš„è¯ï¼Œä¹Ÿæ˜¯æ²¡é—®é¢˜çš„
+  //throw(errno);//×ÜÊÇÄÜÅ×³öÒì³£À´£¬ÔõÃ´»ØÊÂÄØ,ÆäÊµ²»ÓÃÕâ¸öµÄ»°£¬Ò²ÊÇÃ»ÎÊÌâµÄ
   //system ("Pause");
   OutputFiles.close();
   finish=clock();
   totaltime=(double)(finish-start)/CLOCKS_PER_SEC;
-  cout<<"\næ­¤ç¨‹åºçš„è¿è¡Œæ—¶é—´ä¸º"<<totaltime<<"ç§’~"<<endl;
+  cout<<"\n´Ë³ÌĞòµÄÔËĞĞÊ±¼äÎª"<<totaltime<<"Ãë~"<<endl;
 	return 0;
 }
